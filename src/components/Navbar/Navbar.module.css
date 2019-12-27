@@ -1,14 +1,18 @@
 .nav{
     grid-area: n;
-    background-color: burlywood;
+    background-color: #8fc1cc ;
     text-align: center;
-
   }
 
 .item a { 
     color: white;
     text-decoration: none;
+    
 }  
+
+.item{
+  padding: 7px;
+}
 
 /* .item a:hover { 
      -webkit-transform: scale(1.1);

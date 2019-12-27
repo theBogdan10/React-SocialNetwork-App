@@ -1,0 +1,35 @@
+.postsBlock{
+    padding: 10px;
+}
+
+.posts{
+    margin-top: 13px;
+}
+
+.area{
+    width: 400px;
+    height: 80px;
+    font-size: 15px;
+    font-family: 'Lato',sans-serif;
+    outline: none;
+    resize: none;
+    padding: 6px;
+    overflow: auto;
+    border-radius: 5px;
+}
+
+.button{
+    margin-top: 8px;
+    font-family: 'Lato',sans-serif;
+    font-size: 14px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.button:hover{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
