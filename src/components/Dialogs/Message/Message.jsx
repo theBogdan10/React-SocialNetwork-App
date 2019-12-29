@@ -1,10 +1,9 @@
-import React from "react";
-import s from "./../Dialogs.module.css";
-
+/* eslint-disable react/prop-types */
+import React from 'react';
+import s from './../Dialogs.module.css';
 
 const Message = (props) => {
-  return <div className={s.dialog}>{props.message}</div>;
+	return <div className={s.dialog}>{props.message}</div>;
 };
- 
 
 export default Message;

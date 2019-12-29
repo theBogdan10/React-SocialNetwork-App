@@ -20,3 +20,19 @@
 .messages .message{
     color: white;
 }
+
+.area{
+    width: 400px;
+    height: 40px;
+    font-size: 14px;
+    font-family: 'Lato',sans-serif;
+    outline: none;
+    resize: none;
+    padding: 6px;
+    overflow: auto;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+.btn{
+}
