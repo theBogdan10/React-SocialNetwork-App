@@ -1,5 +1,11 @@
 /* eslint-disable indent */
 /* eslint-disable no-case-declarations */
+
+const ADD_POST='ADD-POST';
+const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY='UPDATE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE='SEND-MESSAGE';
+
 let store = {
 	_state: {
 		profilePage: {
@@ -25,6 +31,8 @@ let store = {
 				{ id: 2, message: 'How are you?' },
 				{ id: 3, message: 'Fine bro' }
 			],
+			
+			newMessageBody:'',
 		},
 		sideBar: {
 		}
@@ -44,7 +52,7 @@ let store = {
 
 	dispatch(action) {
 		switch (action.type) {
-			case 'ADD-POST':
+			case ADD_POST:
 				let newPost = {
 					id: 5,
 					message: this._state.profilePage.newPostText,
@@ -54,12 +62,36 @@ let store = {
 				this._state.profilePage.newPostText = '';
 				this._callSubscr(this._state);
 				break;
-			case 'UPDATE-NEW-POST-TEXT':
+			case UPDATE_NEW_POST_TEXT:
 				this._state.profilePage.newPostText =action.newText;
 				this._callSubscr(this._state);
 				break;
+			case UPDATE_NEW_MESSAGE_BODY:		
+				this._state.dialogsPage.newMessageBody =action.body;
+				this._callSubscr(this._state);
+				break;
+			case SEND_MESSAGE:		
+				let body=this._state.dialogsPage.newMessageBody;
+				this._state.dialogsPage.newMessageBody='';
+				this._state.dialogsPage.messages.push({id:4,message:body});
+				this._callSubscr(this._state);
 		}
 	}
 };
+
+export const addPostActionCreator= () => ({type:ADD_POST});
+
+export const updtNewPostActionCreator= (msg) => ({
+	type:UPDATE_NEW_POST_TEXT,
+	newText:msg,
+});
+
+
+export const sendMsgCreator= () => ({type:SEND_MESSAGE});
+
+export const updtNewMsgBodyCreator= (textBody) => ({
+	type:UPDATE_NEW_MESSAGE_BODY,
+	body:textBody,
+});
 
 export default store;
