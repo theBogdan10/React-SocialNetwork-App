@@ -1,10 +1,8 @@
 /* eslint-disable indent */
 /* eslint-disable no-case-declarations */
-
-const ADD_POST='ADD-POST';
-const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_BODY='UPDATE-NEW-MESSAGE-BODY';
-const SEND_MESSAGE='SEND-MESSAGE';
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
+import sidebarReducer from './sidebar-reducer';
 
 let store = {
 	_state: {
@@ -34,12 +32,13 @@ let store = {
 			
 			newMessageBody:'',
 		},
+
 		sideBar: {
 		}
 	},
 
 	_callSubscr() {
-		console.log('State changed');
+		console.log('State changed'); 
 	},
 
 	getState() {
@@ -51,47 +50,18 @@ let store = {
 	},
 
 	dispatch(action) {
-		switch (action.type) {
-			case ADD_POST:
-				let newPost = {
-					id: 5,
-					message: this._state.profilePage.newPostText,
-					likesCount: 0
-				};
-				this._state.profilePage.posts.push(newPost);
-				this._state.profilePage.newPostText = '';
-				this._callSubscr(this._state);
-				break;
-			case UPDATE_NEW_POST_TEXT:
-				this._state.profilePage.newPostText =action.newText;
-				this._callSubscr(this._state);
-				break;
-			case UPDATE_NEW_MESSAGE_BODY:		
-				this._state.dialogsPage.newMessageBody =action.body;
-				this._callSubscr(this._state);
-				break;
-			case SEND_MESSAGE:		
-				let body=this._state.dialogsPage.newMessageBody;
-				this._state.dialogsPage.newMessageBody='';
-				this._state.dialogsPage.messages.push({id:4,message:body});
-				this._callSubscr(this._state);
-		}
+
+		this._state.profilePage=profileReducer(this._state.profilePage,action);
+		this._state.dialogsPage=dialogsReducer(this._state.dialogsPage,action);
+		this._state.sidebar=sidebarReducer(this._state.sidebar,action);
+
+		this._callSubscr(this._state);
+
 	}
 };
 
-export const addPostActionCreator= () => ({type:ADD_POST});
-
-export const updtNewPostActionCreator= (msg) => ({
-	type:UPDATE_NEW_POST_TEXT,
-	newText:msg,
-});
 
 
-export const sendMsgCreator= () => ({type:SEND_MESSAGE});
 
-export const updtNewMsgBodyCreator= (textBody) => ({
-	type:UPDATE_NEW_MESSAGE_BODY,
-	body:textBody,
-});
 
 export default store;
