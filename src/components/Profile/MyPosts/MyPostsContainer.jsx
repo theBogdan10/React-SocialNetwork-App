@@ -6,7 +6,7 @@ import {addPostActionCreator,updtNewPostActionCreator} from '../../../redux/prof
 
 
 const MyPostsContainer = (props) => {
-    
+
 	let state=props.store.getState();
 
 	let addPost=()=>{
@@ -14,11 +14,15 @@ const MyPostsContainer = (props) => {
 	};
 
 	let onPostChange=(text)=>{
-		props.store.dispatch(updtNewPostActionCreator(text));
+		let action=updtNewPostActionCreator(text);
+		props.store.dispatch(action);
 	};
  
 	return (
-		<MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={state.profilePage.posts} newPostText={state.profilePage.newPostText}/>
+		<MyPosts updateNewPostText={onPostChange}
+		addPost={addPost} 
+		posts={state.profilePage.posts}
+		newPostText={state.profilePage.newPostText}/>
 	);
 };
 
