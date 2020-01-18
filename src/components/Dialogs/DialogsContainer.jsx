@@ -1,28 +1,28 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
-import React from 'react';
-import Dialogs from './Dialogs'
+import Dialogs from './Dialogs';
 import {updtNewMsgBodyCreator,sendMsgCreator} from '../../redux/dialogs-reducer';
- 
-const DialogsContainer = (props) => {
+import {connect} from 'react-redux';
 
-	let state=props.store.getState();
 
-	let onSendMessageClick = () => {
-		props.store.dispatch(sendMsgCreator());
-
+let mapStateToProps=(state)=>{
+	return{
+		dialogsPage:state.dialogsPage,
 	};
-
-	let onNewMessageChange = (body) => {
-		props.store.dispatch(updtNewMsgBodyCreator(body));
-	};
-
-	return (
-		<Dialogs updtNewMsgBodyCreator={onNewMessageChange}
-				 sendMessage={onSendMessageClick}	 
-				 dialogsPage={state.dialogsPage}
-				/>
-	);
 };
+
+let mapDispatchToProps=(dispatch)=>{
+	return{
+		updtNewMsgBody:(body)=>{
+			dispatch(updtNewMsgBodyCreator(body));
+		},
+		sendMessage:()=>{
+			dispatch(sendMsgCreator());
+
+		}
+	};
+};
+
+const DialogsContainer=connect(mapStateToProps,mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

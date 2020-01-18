@@ -31,7 +31,7 @@ const MyPosts = (props) => {
 				</div>
 			</div>
 			<div className={s.posts}>
-				 {postElements}
+				{postElements}
 			</div>
 		</div>
 	);
