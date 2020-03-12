@@ -54,7 +54,6 @@ let store = {
 		this._state.profilePage=profileReducer(this._state.profilePage,action);
 		this._state.dialogsPage=dialogsReducer(this._state.dialogsPage,action);
 		this._state.sidebar=sidebarReducer(this._state.sidebar,action);
-
 		this._callSubscr(this._state);
 
 	}
