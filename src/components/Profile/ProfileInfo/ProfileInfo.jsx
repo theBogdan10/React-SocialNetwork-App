@@ -1,16 +1,32 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import Preloader from '../../common/Preloader/Preloader';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+
+	if(!props.profile){
+		return <Preloader />;
+	}
+
 	return (
 		<div>
-			<div>
-				{/* <img
-          className={s.foto}
-          src="https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-        ></img> */}
+			
+			<div className={s.descriptionBlock}>
+				<img src={props.profile.photos.large} className={s.foto}/>
+				<div>
+					<p>Full Name: {props.profile.fullName}</p>
+					<p>About me: {props.profile.aboutMe}</p>
+					<p>Contacts: </p>
+					<ul>
+						<li>Facebook : {props.profile.contacts.facebook}</li>
+						<li>Vk : {props.profile.contacts.vk}</li>
+						<li>Instagram : {props.profile.contacts.instagram}</li>
+						<li>Github : {props.profile.contacts.github}</li>
+						<li>Twitter : {props.profile.contacts.twitter}</li>
+
+					</ul>
+				</div>
 			</div>
-			<div className={s.descriptionBlock}>ava+descr</div>
 		</div>
 	);
 };
